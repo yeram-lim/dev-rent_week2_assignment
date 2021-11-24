@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <link rel="stylesheet" href=""/>
+    <title>{% block title%} My Blog {% endblock %}</title>
+    <style>
+        #header {
+            background-color: #50bcdf;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* #sidebar {
+            text-align: center;
+            width: 150px;
+            height: 500px;
+            border: solid aquamarine;
+        } */
+        #content {
+            width: 100%;
+            height: 800px;
+            border: solid aqua;
+        }
+        .button {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        {% block header %}
+            <h2>OSHMOS's Blog</h2>
+            <a href="{% url 'post:write' %}">
+                <input type="submit" value="글 작성" class="button"></input>
+            </a>
+        {% endblock %}
+    </div>
+
+    <!-- <div id="sidebar">
+        {% block sidebar %}
+        <h3>글 작성하기</h3>
+        <input type="submit" value="글 작성" class="button"></input>
+        {% endblock %}
+    </div> -->
+
+    <div id="content">
+        {% block content %}
+        {% for write in posts %}
+        <div class="write">
+            <hr>
+            <a href="{% url 'post:detail' write.pk %}"><div>{{write.title}}</div></a>
+            <div>{{write.category}}</div>
+            <div>{{write.content}}</div>
+            <div>{{write.pub_date}}</div>
+            <a href="{% url 'post:update' write.pk %}"><button>글 수정</button></a>
+            <a href="{% url 'post:delete' write.pk %}"><button>글 삭제</button></a>
+            <hr>
+        </div>
+        {% endfor %}
+        {% endblock %}
+    </div>
+</body>
+</html>

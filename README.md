@@ -1,1 +1,1 @@
-# dev-rent_week2_assignment
+# Django_Practice
